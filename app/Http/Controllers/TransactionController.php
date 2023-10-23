@@ -12,7 +12,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::orderBy('created_at','desc')->get(); //untuk menampilkan terbalik menurut cretaed_at
+        return view('transactions.index', compact('transactions'));
     }
 
     /**
