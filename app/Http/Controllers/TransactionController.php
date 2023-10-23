@@ -12,7 +12,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::orderBy('created_at','desc')->get(); //untuk menampilkan terbalik menurut cretaed_at
+        $transactions = Transaction::orderBy('created_at','desc')->paginate(25); //untuk menampilkan terbalik menurut cretaed_at
         return view('transactions.index', compact('transactions'));
     }
 
@@ -43,7 +43,7 @@ class TransactionController extends Controller
             'notes' => $validated['notes'],
         ]);
 
-        return $transaction;
+        return redirect()->route('transactions.index')->with('success', 'Transaction added.');
     }
 
     /**
@@ -51,7 +51,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        return view('transactions.show', compact('transaction'));
     }
 
     /**

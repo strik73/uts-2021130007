@@ -1,13 +1,21 @@
 @extends('layouts.template')
 
-@section('title', 'Articles List')
+@section('title', 'Transaction List')
 
 @section('content')
     <div class="mt-4 p-5 bg-black text-white rounded">
         <h1>All Transactions</h1>
     </div>
 
+    @if (session()->has('success'))
+    <div class="alert alert-success mt-4">
+        {{ session()->get('success') }}
+    </div>
+    @endif
+
     <div class="container mt-5">
+        <a href="{{ route('transactions.create') }}" class="btn btn-primary btn-lg">Add New Transaction</a><br>
+        <br>
         <table class="table table-bordered mb-5">
             <thead>
                 <tr class="table-success">
@@ -23,7 +31,9 @@
             <tbody>
                 @forelse ($transactions as $transaction)
                     <tr>
-                        <th scope="row">{{ $transaction->id }}</th>
+                        <th scope="row"><a href="{{ route('transactions.show', $transaction)}}">
+                        {{ $transaction->id }}
+                        </th>
                         <td>{{ $transaction->amount }}</td>
                         <td>{{ $transaction->type }}</td>
                         <td>{{ $transaction->category }}</td>
@@ -38,5 +48,8 @@
                 @endforelse
             </tbody>
         </table>
+        <div class="d-flex justify-content-center">
+            {!! $transactions->links() !!}
+        </div>
     </div>
 @endsection
