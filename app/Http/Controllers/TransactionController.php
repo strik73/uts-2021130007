@@ -20,7 +20,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('transactions.create');
     }
 
     /**
@@ -28,7 +28,21 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'amount' => 'required|numeric',
+            'type' => 'required|string',
+            'category' => 'required|string',
+            'notes' => 'required|string',
+        ]);
+
+        $transaction = Transaction::create([
+            'amount' => $validated['amount'],
+            'type' => $validated['type'],
+            'category' => $validated['category'],
+            'notes' => $validated['notes'],
+        ]);
+
+        return $transaction;
     }
 
     /**
