@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="mt-4 p-5 bg-black text-white rounded">
-        <h1>All Transactions</h1>
+        <h1 style="text-align: center">All Transactions</h1>
     </div>
 
     @if (session()->has('success'))
@@ -13,13 +13,13 @@
         </div>
     @endif
 
-    <div class="container mt-5">
-        <a href="{{ route('transactions.create') }}" class="btn btn-info btn-lg">Add New Transaction</a><br>
+    <div class="container mt-4">
+        <a href="{{ route('transactions.create') }}" class="btn btn-primary btn-lg">Add New Transaction</a><br>
         <br>
-        <div class="p-4 mb-3 .bg-gradient-primary text-light rounded">
-        <h3 class="mb-3">Balance : {{$balance}}</h3>
-        <h5>Total Income : {{$totalincome}} | Amount of transaction : {{$countincome}}</h3>
-        <h5>Total Expense : {{$totalexp}} | Amount of transaction : {{$countexp}}</h3>
+        <div class="p-4 mb-3 bg-success bg-gradient text-light rounded">
+        <h3 class="mb-3">Balance : Rp. {{$balance}}</h3>
+        <h5>Total Income : Rp. {{$totalincome}} | Amount of transaction : {{$countincome}}</h3>
+        <h5>Total Expense : Rp. {{$totalexp}} | Amount of transaction : {{$countexp}}</h3>
         </div>
         <table class="table table-bordered mb-5">
             <thead>
@@ -40,10 +40,10 @@
                         <th scope="row"><a href="{{ route('transactions.show', $transaction) }}">
                                 {{ $transaction->id }}
                         </th>
-                        <td>{{ $transaction->amount }}</td>
+                        <td>Rp. {{ $transaction->amount }}</td>
                         <td>{{ $transaction->type }}</td>
                         <td>{{ $transaction->category }}</td>
-                        <td>{{ Str::limit($transaction->notes, 50, ' ...') }}</td>
+                        <td>{{ Str::limit($transaction->notes, 15, ' ...') }}</td>
                         <td>{{ $transaction->created_at }}</td>
                         <td>{{ $transaction->updated_at }}</td>
                         <td>
