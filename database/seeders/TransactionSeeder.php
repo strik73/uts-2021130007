@@ -17,7 +17,7 @@ class TransactionSeeder extends Seeder
         for ($i = 0; $i < 100; $i++) {
             $amount = $faker->numberBetween(0,1000000);
             $type = $faker->randomElement(['Income','Expense']);
-            $category = $faker->sentence(2);
+            $category = ($type === 'Income') ? $faker->randomElement(['Wage','Gift','Bonus']) : $faker->randomElement(['Food & Drinks', 'Shopping', 'Charity', 'Housing', 'Insurance', 'Taxes', 'Transportation']);
             $notes = $faker->paragraph(5);
             $created_at = $faker->dateTimeBetween('-3 months', 'now');
 
