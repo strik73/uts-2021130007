@@ -13,7 +13,13 @@ class TransactionController extends Controller
     public function index()
     {
         $transactions = Transaction::orderBy('created_at','desc')->paginate(25); //untuk menampilkan terbalik menurut cretaed_at
-        return view('transactions.index', compact('transactions'));
+        $totalincome = Transaction::where('type','income')->sum('amount');
+        $totalexp = Transaction::where('type','expense')->sum('amount');
+        $countincome = Transaction::where('type','income')->count();
+        $countexp = Transaction::where('type','expense')->count();
+        $balance = $totalincome - $totalexp;
+
+        return view('transactions.index',compact('transactions'),compact('totalexp','totalincome','balance','countincome','countexp'));
     }
 
     /**

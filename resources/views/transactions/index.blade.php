@@ -14,8 +14,13 @@
     @endif
 
     <div class="container mt-5">
-        <a href="{{ route('transactions.create') }}" class="btn btn-primary btn-lg">Add New Transaction</a><br>
+        <a href="{{ route('transactions.create') }}" class="btn btn-info btn-lg">Add New Transaction</a><br>
         <br>
+        <div class="p-4 mb-3 .bg-gradient-primary text-light rounded">
+        <h3 class="mb-3">Balance : {{$balance}}</h3>
+        <h5>Total Income : {{$totalincome}} | Amount of transaction : {{$countincome}}</h3>
+        <h5>Total Expense : {{$totalexp}} | Amount of transaction : {{$countexp}}</h3>
+        </div>
         <table class="table table-bordered mb-5">
             <thead>
                 <tr class="table-success">
