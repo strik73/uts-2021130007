@@ -24,7 +24,7 @@
                 @csrf
                 <div class="mb-3 col-md-12 col-sm-12">
                     <label for="amount" class="form-label">Amount</label>
-                    <input type="number" class="form-control" id="amount" name="amount" value="{{ old('amount') }}">
+                    <input type="number" step="0.01" min="0" class="form-control" id="amount" name="amount" value="{{ old('amount') }}">
                 </div>
 
                 <div class="mb-3 col-md-12 col-sm-12">
